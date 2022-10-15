@@ -106,7 +106,7 @@ class Testcase(unittest.TestCase):
         # Generated through random card generator website and removing a number
         # https://bestccgen.com/amex-card-generator.php
         def test_invalid_americanexp5(self):
-                a = 5574727844710641
+                a = 3574727844710641
                 self.assertFalse(credit_card_validator(a), message)
 
 # ====================================================================Mastercard Testing============================================================================== #
