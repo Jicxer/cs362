@@ -38,7 +38,7 @@ def credit_card_validator(num):
 # Assess whether the values entered are of valid digit sizes
 # Returns true if passes
 def credit_card_length(num):
-    if (getSize(num) == 16 or getSize(num) == 15):
+    if (getSize(num) == 16 or getSize(num) == 15):                       
         return True
     else:
         return False
@@ -47,29 +47,32 @@ def credit_card_length(num):
 # This function finds the length of an integer by converting the integer into a string and utilizing len()
 # https://www.geeksforgeeks.org/program-credit-card-number-validation/
 def getSize(d):
-    num = str(d) + ""
+    num = str(d) + ""                                                            # Converts integer into a string and finds the length of that string
     return len(num)
 
 # Following code block is from GeeksforGeeks
 # This function checks if number's prefix is valid
-def valid_prefix(num, k):                                                        #Passes the card number and length of prefix
+def valid_prefix(num, k):                                                        # Passes the card number and length of prefix
     print("Printing K:")
     print(k)
-    if get_Prefix(num,getSize(k)) == 4:                                          #If the number has a prefix of '4' then a Visa card has been found
+    if get_Prefix(num,getSize(k)) == 4:                                          # If the number has a prefix of '4' then a Visa card has been found
         print("Visa found!")
         return True
-    elif(americanexp_check(get_Prefix(num,2)) == True):
+    elif(americanexp_check(get_Prefix(num,2)) == True):                          # If prefix of 4 was not found, check if card fits American Express prefix
         print("American Express card found!")
         return True
-    elif (mastercard_check(get_Prefix(num,2)) == True):
+    elif (mastercard_check(get_Prefix(num,2)) == True):                          # If American Express card was not found, check if it is a Master Card type 1
         print("Mastercard type 1 found!")
         return True
-    elif (mastercard_check2(get_Prefix(num,4)) == True):
+    elif (mastercard_check2(get_Prefix(num,4)) == True):                         # If Master Card type 1 not found, check if it is a type 2
         print("Mastercard type 2 found!")
         return True
-    else:
+    else:                                                                        # If the number is not a valid credit card, return false
         return False
 
+# Functions accepts a value (k) and checks if that value
+# is within the prefix range of American Express Card type (34 - 37)
+# Returns True if value is within range
 def americanexp_check(k):
     print("Printing k within americanexp_check: " + str(k))
     for i in americanexp:
@@ -79,7 +82,9 @@ def americanexp_check(k):
     print("Value was: " + str(k))
     return False
             
-
+# Functions accepts a value (k) and checks if that value
+# is within the prefix range of Master Card type 1 (51 - 55)
+# Returns True if value is within range
 def mastercard_check(k):
     print("Printing k within mastercard_check: " + str(k))
     for i in mastercard:
@@ -88,6 +93,9 @@ def mastercard_check(k):
             return True
     return False
 
+# Functions accepts a value (k) and checks if that value
+# is within the prefix range of Master Card type 2 (2221 - 2270)
+# Returns True if value is within range
 def mastercard_check2(k):
     print("Printing k within mastercard_check: " + str(k))
     for i in mastercard2:
@@ -95,7 +103,12 @@ def mastercard_check2(k):
             print("Found value within mastercard: " + str(i))
             return True
     return False
-    
+
+
+# Code modeled after GeeksforGeeks function
+# Returns the first K number of digits from number
+# If the number of digits (k) in number is less than k, return the number.
+#https://www.geeksforgeeks.org/program-credit-card-number-validation/
 def get_Prefix(num,  k):
     print(k)
     print("printing size of k")
